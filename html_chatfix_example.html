@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatFix Demo Integration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #f3f4f6;
+    }
+    header {
+      padding: 20px;
+      background: #1a365d;
+      color: white;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 90vh; /* full height minus header */
+      border: none;
+      max-width: 1000px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ChatFix Demo Page</h1>
+    <p>Below is the full-screen ChatFix assistant embedded via /embed/chatfix</p>
+  </header>
+  <main>
+    <iframe 
+      id="chatfix-frame" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </main>
+
+  <script>
+    // Replace with your backend base (local or EB)
+    const BACKEND_HTTP_BASE = "http://localhost:5000";
+
+    // Example WebSocket path (project-specific)
+    const WS_PATH = "ws/project/689df5a72cea83f085fd9a65/converse_stream";
+
+    // Example values
+    const preprompt   = "You are a helpful AI support assistant for Philips Saeco coffee machines.";
+    const chatTitle   = "Philips Saeco AI support";
+    const chatSubtitle= "Stel je vraag in elke taal! Feel free to ask in your language";
+    const prompts     = [
+      "De machine start niet op",
+      "De koffie smaakt of stroomt niet goed",
+      "De melk schuimt niet zoals gewenst",
+      "Water of stoom komt niet door"
+    ];
+
+    // Build /embed/chatfix URL with query params
+    const iframe = document.getElementById("chatfix-frame");
+    const embedUrl = new URL("/embed/chatfix", BACKEND_HTTP_BASE);
+    embedUrl.searchParams.set("ws", WS_PATH);
+    embedUrl.searchParams.set("preprompt", preprompt);
+    embedUrl.searchParams.set("chat_title", chatTitle);
+    embedUrl.searchParams.set("chat_subtitle", chatSubtitle);
+    embedUrl.searchParams.set("prompts", JSON.stringify(prompts));
+
+    iframe.src = embedUrl.toString();
+  </script>
+</body>
+</html>
+

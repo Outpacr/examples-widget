@@ -13,48 +13,39 @@
     }
     .main-section { flex: 2; }
     .sidebar { flex: 1; }
-    iframe { width: 100%; height: 600px; border: none; border-radius: 8px; }
   </style>
 </head>
 <body>
   <header>
     <h1>Welcome to My Demo Page</h1>
-    <p>This page shows the Outpacr AI chatbot embedded as a subsection.</p>
+    <p>This page shows the Outpacr AI chatbot via a single script include.</p>
   </header>
 
   <div class="content">
     <div class="main-section">
       <h2>Main Content</h2>
       <p>Put your normal content here.</p>
-      <p>The chatbot runs in a separate process on your backend.</p>
+      <p>The chatbot loads as a floating button in the bottom-right corner.</p>
     </div>
 
     <div class="sidebar">
       <h2>AI Chat Assistant</h2>
-      <!-- Iframe src will be set by the script below -->
-      <iframe id="chatbot-frame" referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
+      <p>No iframe needed—the loader injects the widget automatically.</p>
     </div>
   </div>
 
-  <script>
-    // Backend base serving the /embed/outpacr endpoint/
-    // test endpoint "http://localhost:5000";
-    const BACKEND_HTTP_BASE = "https://flask-ai-demo-env.eba-aqbrczwq.eu-central-1.elasticbeanstalk.com"
-
-    // Required ws path you specified
-    const WS_PATH = "ws/project/689786a4fb811a7b50e4ce4b/converse_stream";
-
-
-    // Build iframe src: /embed/outpacr?ws=<encoded ws url>
-    const iframe = document.getElementById("chatbot-frame");
-    const embedUrl = new URL("/embed/outpacr", BACKEND_HTTP_BASE);
-    embedUrl.searchParams.set("ws", WS_PATH);
-
-    // If you also want to pass an prepromt, uncomment:
-    // embedUrl.searchParams.set("prepromt", "YOUR PROMPT HERE");
-
-    iframe.src = embedUrl.toString();
-  </script>
+  <!-- One-liner loader: adjust data-backend for your environment -->
+  <!-- For local dev, set data-backend="http://localhost:5000" -->
+  <!-- For staging dev, set data-backend="https://flask-ai-demo-env.eba-aqbrczwq.eu-central-1.elasticbeanstalk.com/embed/outpacr.js" -->
+  <script
+    src="http://localhost:5000/embed/outpacr.js"
+    data-backend="http://localhost:5000"
+    data-ws="ws/project/689786a4fb811a7b50e4ce4b/converse_stream"
+    data-preprompt=""
+    data-title="Standard Outpacr Widget"
+    data-welcome="Hi! 👋🏼 Welkom bij de AI-assistent van Outpacr! Stel hier je vraag over AI."
+    defer
+  ></script>
 </body>
 </html>
 
