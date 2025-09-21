@@ -20,31 +20,42 @@
     <h1>Welcome to My Demo Page</h1>
     <p>This page shows the Outpacr AI chatbot via a single script include.</p>
   </header>
-
   <div class="content">
     <div class="main-section">
       <h2>Main Content</h2>
       <p>Put your normal content here.</p>
       <p>The chatbot loads as a floating button in the bottom-right corner.</p>
     </div>
-
     <div class="sidebar">
       <h2>AI Chat Assistant</h2>
       <p>No iframe needed—the loader injects the widget automatically.</p>
+      <p>Check out the funky colors on the chatbot!</p>
     </div>
   </div>
-
-  <!-- One-liner loader: adjust data-backend for your environment -->
-  <!-- For local dev, set data-backend="http://localhost:5000" -->
-  <!-- For staging dev, set data-backend="https://flask-ai-demo-env.eba-aqbrczwq.eu-central-1.elasticbeanstalk.com/embed/outpacr.js" -->
+  <!-- One-liner loader with funky colors for testing -->
   <script
     src="http://localhost:5000/embed/outpacr.js"
     data-backend="http://localhost:5000/"
     data-ws="ws/project/689786a4fb811a7b50e4ce4b/converse_stream"
     data-preprompt=""
-    data-title="Standard Outpacr Widget"
-    data-welcome="Hi! 👋🏼 Welkom bij de AI-assistent van Outpacr! Stel hier je vraag over AI."
+    data-title="Funky Color Widget"
+    data-welcome="Hi! Welcome to the rainbow chatbot experience!"
+    data-button-bg="#FF6B6B"
+    data-button-text="#FFFFFF"
+    data-button-icon="🌈"
+    data-button-label="Funky Chat"
+    data-header-bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    data-header-text="#FFFFFF"
+    data-bg-color="#FFF8DC"
+    data-user-bubble="#FF69B4"
+    data-user-bubble-text="#FFFFFF"
+    data-ai-bubble="#98FB98"
+    data-ai-bubble-text="#2F4F4F"
+    data-send-button="#FF4500"
+    data-send-button-text="#FFFFFF"
+    data-border-color="#DDA0DD"
+    data-footer-bg="#E6E6FA"
+    data-footer-text="#8A2BE2"
   ></script>
 </body>
 </html>
-
